@@ -18,7 +18,7 @@
 @interface XJLActionSheet : UIView <MyActionSheetDelegate>
 
 @property (nonatomic,strong) UIWindow *mywindow;
-@property (retain, nonatomic) UIView *parentView;
+@property (nonatomic, strong) UIView *parentView;
 @property (nonatomic, assign) id<MyActionSheetDelegate> delgate;
 @property (nonatomic, assign) CGRect paretViewFrame;
 @property (nonatomic, copy) NSString *titleName;
