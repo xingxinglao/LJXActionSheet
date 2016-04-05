@@ -11,13 +11,14 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 
-#define labelFont  [UIFont systemFontOfSize:18]
-#define labelTextColor [UIColor blackColor]
-#define labelHeight 50
+#define labelFont  [UIFont systemFontOfSize:18] // 文本的字体
+#define labelTextColor [UIColor blackColor] // 文本的字体颜色
+#define labelHeight 50 // 每个按钮的高度
 
-#define titleFont [UIFont boldSystemFontOfSize:18]
-#define titleTextColor [UIColor redColor]
+#define titleFont [UIFont boldSystemFontOfSize:18] // 标题字体大小
+#define titleTextColor [UIColor redColor] // 标题颜色
 
+#define LastButtonDistans 10    // 与最后一个按钮的距离
 
 @implementation XJLActionSheet
 
@@ -48,8 +49,10 @@
             // 置空
             va_end(params);
         }
-        
-        self.titleNameArr = [NSMutableArray arrayWithObject:title];
+        self.titleNameArr = [NSMutableArray array];
+        if (title != nil) {
+             [self.titleNameArr addObject:title];
+        }
         
         [self.titleNameArr addObjectsFromArray:args];
         
@@ -71,7 +74,7 @@
     self.alpha = .3;
     
     // 父视图高
-    CGFloat parentViewHeight = self.titleNameArr.count * labelHeight + self.titleNameArr.count + 10;
+    CGFloat parentViewHeight = self.titleNameArr.count * labelHeight + self.titleNameArr.count + LastButtonDistans;
     
     // 创建装Label的父视图
     _parentView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, parentViewHeight)];
@@ -102,7 +105,7 @@
         }
         
         if (i == self.titleNameArr.count - 1) {
-            myLabel.top += 10;
+            myLabel.top += LastButtonDistans;
         }
     }
 }
